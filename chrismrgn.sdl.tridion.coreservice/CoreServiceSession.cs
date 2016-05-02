@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.ServiceModel;
+using System.Xml;
 using Tridion.ContentManager.CoreService.Client;
 
 namespace chrismrgn.sdl.tridion.coreservice
@@ -28,8 +29,31 @@ namespace chrismrgn.sdl.tridion.coreservice
         {
             try
             {
-                _client = new CoreServiceClient(endPoint);
-                _client.ChannelFactory.Credentials.Windows.ClientCredential = credentials;
+                var binding = new BasicHttpBinding()
+                {
+                    MaxReceivedMessageSize = 2147483647,
+                    ReaderQuotas = new XmlDictionaryReaderQuotas
+                    {
+                        MaxStringContentLength = 2147483647,
+                        MaxArrayLength = 2147483647
+                    },
+                    Security = 
+                    {
+                        Mode = BasicHttpSecurityMode.TransportCredentialOnly,
+                        Transport = new HttpTransportSecurity
+                        {
+                            ClientCredentialType = HttpClientCredentialType.Windows
+                        }
+                        
+                    },
+                };
+
+                _client = new CoreServiceClient(binding, new EndpointAddress(endPoint+ "/basicHttp"));
+
+                if (_client.ClientCredentials != null)
+                {
+                    _client.ClientCredentials.Windows.ClientCredential = credentials;
+                }
                 
                 if (_client != null) _coreServiceVersion = _client.GetApiVersion();
             }
@@ -42,8 +66,22 @@ namespace chrismrgn.sdl.tridion.coreservice
         {
             try
             {
-                var _client = new SessionAwareCoreServiceClient(endPoint);
-                _client.ChannelFactory.Credentials.Windows.ClientCredential = credentials;
+                var binding = new WSHttpBinding
+                {
+                    MaxReceivedMessageSize = 2147483647,
+                    ReaderQuotas = new XmlDictionaryReaderQuotas
+                    {
+                        MaxStringContentLength = 2147483647,
+                        MaxArrayLength = 2147483647
+                    }
+                };
+
+                var _client = new SessionAwareCoreServiceClient(binding, new EndpointAddress(endPoint+"/wsHttp"));
+
+                if (_client.ClientCredentials != null)
+                {
+                    _client.ClientCredentials.Windows.ClientCredential = credentials;
+                }
 
                 if (_client != null) _coreServiceVersion = _client.GetApiVersion();
             }

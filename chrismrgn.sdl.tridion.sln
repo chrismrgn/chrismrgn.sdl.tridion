@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chrismrgn.sdl.tridion.coreservice", "chrismrgn.sdl.tridion.coreservice\chrismrgn.sdl.tridion.coreservice.csproj", "{3A86434F-052E-44F6-8DB8-AE4177FB2EC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chrismgrn.sdl.tridion.coreservice.extensionmethods", "chrismgrn.sdl.tridion.coreservice.extensionmethods\chrismgrn.sdl.tridion.coreservice.extensionmethods.csproj", "{221E98C3-C839-4605-9583-329DFEDD533E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chrismrgn.sdl.tridion.coreservice.tests", "chrismrgn.sdl.tridion.coreservice.tests\chrismrgn.sdl.tridion.coreservice.tests.csproj", "{995AE0B9-7BFB-4106-9363-990BA04FE468}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{3A86434F-052E-44F6-8DB8-AE4177FB2EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A86434F-052E-44F6-8DB8-AE4177FB2EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A86434F-052E-44F6-8DB8-AE4177FB2EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{221E98C3-C839-4605-9583-329DFEDD533E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{221E98C3-C839-4605-9583-329DFEDD533E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{221E98C3-C839-4605-9583-329DFEDD533E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{221E98C3-C839-4605-9583-329DFEDD533E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{995AE0B9-7BFB-4106-9363-990BA04FE468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995AE0B9-7BFB-4106-9363-990BA04FE468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995AE0B9-7BFB-4106-9363-990BA04FE468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995AE0B9-7BFB-4106-9363-990BA04FE468}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

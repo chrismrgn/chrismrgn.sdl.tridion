@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="IdentifiableObjectExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VersionedItemDataExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\chrismrgn.sdl.tridion.coreservice\chrismrgn.sdl.tridion.coreservice.csproj">
