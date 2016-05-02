@@ -8,12 +8,6 @@ namespace chrismrgn.sdl.tridion.coreservice.tests
     [TestClass]
     public class TridionCoreServiceFactoryTests
     {
-        [TestInitialize()]
-        public void Initialize()
-        {
-
-        }
-
         [TestMethod]
         public void ReadInvalidComponent()
         {

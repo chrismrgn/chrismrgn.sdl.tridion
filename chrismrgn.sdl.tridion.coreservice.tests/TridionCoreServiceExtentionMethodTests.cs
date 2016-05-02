@@ -9,12 +9,6 @@ namespace chrismrgn.sdl.tridion.coreservice.tests
     [TestClass]
     public class TridionCoreServiceExtentionMethodTests
     {
-        [TestInitialize()]
-        public void Initialize()
-        {
-
-        }
-
         [TestMethod]
         public void CheckOutPage()
         {

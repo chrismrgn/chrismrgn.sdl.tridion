@@ -11,6 +11,7 @@ namespace chrismrgn.sdl.tridion.coreservice
         private string _coreServiceVersion;
 
         private CoreServiceClient _client;
+        private SessionAwareCoreServiceClient _sessionAwareClient;
 
         public CoreServiceSession()
         {
@@ -45,7 +46,7 @@ namespace chrismrgn.sdl.tridion.coreservice
                             ClientCredentialType = HttpClientCredentialType.Windows
                         }
                         
-                    },
+                    }
                 };
 
                 _client = new CoreServiceClient(binding, new EndpointAddress(endPoint+ "/basicHttp"));
@@ -64,6 +65,7 @@ namespace chrismrgn.sdl.tridion.coreservice
 
         private void InitializeSessionAwareClient(string endPoint, NetworkCredential credentials)
         {
+            //TODO: Resolve Error
             try
             {
                 var binding = new WSHttpBinding
@@ -76,14 +78,14 @@ namespace chrismrgn.sdl.tridion.coreservice
                     }
                 };
 
-                var _client = new SessionAwareCoreServiceClient(binding, new EndpointAddress(endPoint+"/wsHttp"));
+                var _sessionAwareClient = new SessionAwareCoreServiceClient(binding, new EndpointAddress(endPoint + "/wsHttp"));
 
-                if (_client.ClientCredentials != null)
+                if (_sessionAwareClient.ClientCredentials != null)
                 {
-                    _client.ClientCredentials.Windows.ClientCredential = credentials;
+                    _sessionAwareClient.ClientCredentials.Windows.ClientCredential = credentials;
                 }
 
-                if (_client != null) _coreServiceVersion = _client.GetApiVersion();
+                if (_sessionAwareClient != null) _coreServiceVersion = _sessionAwareClient.GetApiVersion();
             }
 
             catch (EndpointNotFoundException e) { }

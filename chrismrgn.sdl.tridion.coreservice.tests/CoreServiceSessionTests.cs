@@ -7,26 +7,22 @@ namespace chrismrgn.sdl.tridion.coreservice.tests
     [TestClass]
     public class CoreServiceSessionTests
     {
-        private CoreServiceSession _session;
-        private CoreServiceSession _sessionAwareSession;
-
-        [TestInitialize()]
-        public void Initialize()
-        {
-            _session = TridionCoreServiceFactory.CreateCoreServiceSession();
-            _sessionAwareSession = TridionCoreServiceFactory.CreateCoreServiceSession(true);
-        }
         [TestMethod]
         public void TestCoreServiceSession()
         {
+            var _session = TridionCoreServiceFactory.CreateCoreServiceSession();
             Assert.IsNotNull(_session);
             Assert.IsNotNull(_session.CoreServiceVersion);
+            _session.Dispose();
         }
+
         [TestMethod]
         public void TestSessionAwareCoreServiceSession()
         {
+            var _sessionAwareSession = TridionCoreServiceFactory.CreateCoreServiceSession(true);
             Assert.IsNotNull(_sessionAwareSession);
             Assert.IsNotNull(_sessionAwareSession.CoreServiceVersion);
+            _sessionAwareSession.Dispose();
         }
     }
 }
