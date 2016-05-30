@@ -6,6 +6,7 @@ using System.Net;
 using System.Xml.Linq;
 using chrismrgn.sdl.tridion.coreservice.Extensions;
 using Tridion.ContentManager.CoreService.Client;
+using chrismrgn.sdl.tridion.coreservice;
 
 namespace chrismrgn.sdl.tridion.coreservice
 {
@@ -13,7 +14,7 @@ namespace chrismrgn.sdl.tridion.coreservice
     {
         public static CoreServiceSession CreateCoreServiceSession(bool isSessionAware = false)
         {
-            var endPoint = ConfigurationManager.AppSettings["EndPoint"] ?? "CoreService";
+            var endPoint = ConfigurationManager.AppSettings["EndPointUrl"] ?? "CoreService";
             var credentials = new NetworkCredential(ConfigurationManager.AppSettings["Username"] ?? "DOMAIN\\USERNAME",
                                                         ConfigurationManager.AppSettings["Password"] ?? "PASSWORD");
             return new CoreServiceSession(endPoint, credentials, isSessionAware);
@@ -23,8 +24,18 @@ namespace chrismrgn.sdl.tridion.coreservice
         {
             if (!isSessionAware)
                 bool.TryParse(ConfigurationManager.AppSettings["isSessionAware"], out isSessionAware);
+
             return CreateCoreServiceSession(isSessionAware).CoreServiceClient;
         }
+
+        //TODO:
+        //public static SessionAwareCoreServiceClient CreateCoreServiceClient(bool isSessionAware = false)
+        //{
+        //    if (!isSessionAware)
+        //        bool.TryParse(ConfigurationManager.AppSettings["isSessionAware"], out isSessionAware);
+            
+        //    return CreateCoreServiceSession(isSessionAware).CoreServiceSessionAwareClient;
+        //}
 
         public static PublishTransactionData[] Publish(string [] itemIds, string[] targets, PublishInstructionData publishInstruction = null, PublishPriority priority = PublishPriority.Normal, ReadOptions readOptions = null)
         {
@@ -156,7 +167,6 @@ namespace chrismrgn.sdl.tridion.coreservice
                 catch (Exception e)
                 {
                     obj = null;
-                    //Console.WriteLine(e.Message);
                 }
             });
             return obj;

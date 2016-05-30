@@ -19,7 +19,6 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
             return TridionCoreServiceFactory.CheckOut<T>(item.Id, removeLock, readOptions);
         }
 
-
         //public static void LocalizeItem<T>(this T item, ISessionAwareCoreService client, ReadOptions readOptions = null) where T : VersionedItemData
         //{
         //    if (readOptions == null)

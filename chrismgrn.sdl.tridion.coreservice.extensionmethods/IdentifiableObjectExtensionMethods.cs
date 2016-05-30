@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using chrismrgn.sdl.tridion.coreservice;
 using Tridion.ContentManager.CoreService.Client;
+using chrismrgn.sdl.tridion.core;
+using chrismrgn.sdl.tridion.core.Logging;
 
 namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
 {
@@ -34,6 +36,26 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
                 throw new ArgumentNullException();
 
             return TridionCoreServiceFactory.Publish(items, targets, publishInstruction, priority, readOptions);
+        }
+        public static int GetAllUsageCount<T>(this IdentifiableObjectData item) where T : IdentifiableObjectData
+        {
+            return item.GetAllUsages<T>().Count;
+        }
+        public static IList<T> GetAllUsages<T>(this IdentifiableObjectData item) where T : IdentifiableObjectData
+        {
+            Logger.For(typeof(IdentifiableObjectExtensionMethods)).DebugFormat("Loading {0} for {1}", typeof(T).Name, item.Title);
+            var filter = new UsingItemsFilterData
+            {
+                ItemTypes = new[] { ItemTypeResolver.GetItemType(typeof(T)) },
+                IncludedVersions = VersionCondition.OnlyLatestAndCheckedOutVersions,
+                IncludeLocalCopies = false,
+                BaseColumns = ListBaseColumns.Extended
+            };
+
+            var items = TridionCoreServiceFactory.GetList<T>(item.Id, filter);
+            Logger.For(typeof(IdentifiableObjectExtensionMethods)).DebugFormat("Found {0} {1} for {2}", items.Count, typeof(T).Name, item.Title);
+
+            return items;
         }
     }
 }

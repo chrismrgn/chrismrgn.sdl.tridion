@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Net;
 using System.ServiceModel;
 using System.Xml;
@@ -49,7 +50,7 @@ namespace chrismrgn.sdl.tridion.coreservice
                     }
                 };
 
-                _client = new CoreServiceClient(binding, new EndpointAddress(endPoint+ "/basicHttp"));
+                _client = new CoreServiceClient(binding, new EndpointAddress(endPoint + "/basicHttp"));
 
                 if (_client.ClientCredentials != null)
                 {
@@ -95,6 +96,11 @@ namespace chrismrgn.sdl.tridion.coreservice
         public CoreServiceClient CoreServiceClient
         {
             get { return _client; }
+        }
+
+        public SessionAwareCoreServiceClient CoreServiceSessionAwareClient
+        {
+            get { return _sessionAwareClient; }
         }
 
         public UserData User

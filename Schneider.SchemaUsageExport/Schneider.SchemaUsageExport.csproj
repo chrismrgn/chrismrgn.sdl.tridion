@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{221E98C3-C839-4605-9583-329DFEDD533E}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{E273B981-3173-4C4E-BC88-A7EC2D3387C5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>chrismgrn.sdl.tridion.coreservice.extensionmethods</RootNamespace>
-    <AssemblyName>chrismgrn.sdl.tridion.coreservice.extensionmethods</AssemblyName>
+    <RootNamespace>Schneider.SchemaUsageExport</RootNamespace>
+    <AssemblyName>Schneider.SchemaUsageExport</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -36,9 +38,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,24 +51,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IdentifiableObjectExtensionMethods.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SchemaDataExtensions.cs" />
-    <Compile Include="RepositoryDataExtensions.cs" />
-    <Compile Include="VersionedItemDataExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\chrismgrn.sdl.tridion.coreservice.extensionmethods\chrismgrn.sdl.tridion.coreservice.extensionmethods.csproj">
+      <Project>{221e98c3-c839-4605-9583-329dfedd533e}</Project>
+      <Name>chrismgrn.sdl.tridion.coreservice.extensionmethods</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\chrismrgn.sdl.tridion.coreservice.helpers\chrismrgn.sdl.tridion.coreservice.helpers.csproj">
+      <Project>{57A0FBFB-3C38-4AAE-AF00-CB1D9CEF597D}</Project>
+      <Name>chrismrgn.sdl.tridion.coreservice.helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\chrismrgn.sdl.tridion.coreservice\chrismrgn.sdl.tridion.coreservice.csproj">
-      <Project>{3A86434F-052E-44F6-8DB8-AE4177FB2EC3}</Project>
+      <Project>{3a86434f-052e-44f6-8db8-ae4177fb2ec3}</Project>
       <Name>chrismrgn.sdl.tridion.coreservice</Name>
     </ProjectReference>
     <ProjectReference Include="..\chrismrgn.sdl.tridion.core\chrismrgn.sdl.tridion.core.csproj">
       <Project>{9616332D-8CE8-4372-A49E-7B799F65E067}</Project>
       <Name>chrismrgn.sdl.tridion.core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
