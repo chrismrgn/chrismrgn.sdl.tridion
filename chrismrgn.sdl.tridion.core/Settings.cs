@@ -16,5 +16,16 @@ namespace chrismrgn.sdl.tridion.core
                 maxThreads = 1;
             return maxThreads;
         }
+
+        public static bool CacheData
+        {
+            get
+            {
+                bool cacheData;
+                if (!bool.TryParse(ConfigurationManager.AppSettings["cacheData"], out cacheData))
+                    cacheData = false;
+                return cacheData;
+            }
+        }
     }
 }
