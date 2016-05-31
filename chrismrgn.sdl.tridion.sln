@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chrismrgn.sdl.tridion.core"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chrismrgn.sdl.tridion.coreservice.helpers", "chrismrgn.sdl.tridion.coreservice.helpers\chrismrgn.sdl.tridion.coreservice.helpers.csproj", "{57A0FBFB-3C38-4AAE-AF00-CB1D9CEF597D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{823054DC-CBC9-4955-A81F-C902C7FE8B6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "chrismrgn.sdl.tridion.samples.schemausage", "chrismrgn.sdl.tridion.samples.schemausage\chrismrgn.sdl.tridion.samples.schemausage.csproj", "{9B0CC6CC-00A3-4E90-9867-A0BF399329D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,8 +49,15 @@ Global
 		{57A0FBFB-3C38-4AAE-AF00-CB1D9CEF597D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57A0FBFB-3C38-4AAE-AF00-CB1D9CEF597D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57A0FBFB-3C38-4AAE-AF00-CB1D9CEF597D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B0CC6CC-00A3-4E90-9867-A0BF399329D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B0CC6CC-00A3-4E90-9867-A0BF399329D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B0CC6CC-00A3-4E90-9867-A0BF399329D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B0CC6CC-00A3-4E90-9867-A0BF399329D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9B0CC6CC-00A3-4E90-9867-A0BF399329D8} = {823054DC-CBC9-4955-A81F-C902C7FE8B6E}
 	EndGlobalSection
 EndGlobal
