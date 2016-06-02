@@ -6,7 +6,7 @@ using Tridion.ContentManager.CoreService.Client;
 
 namespace chrismrgn.sdl.tridion.coreservice.Helpers
 {
-    internal static class ItemHelpers
+    public static class ItemHelpers
     {
         internal static IList<T> LoadAllByPublication<T>(IList<PublicationData> publications = null, SchemaPurpose[] schemaPurposesToInclude = null) where T : RepositoryLocalObjectData
         {
@@ -26,6 +26,11 @@ namespace chrismrgn.sdl.tridion.coreservice.Helpers
                     );
 
             return items;
+        }
+
+        public static T LoadItem<T>(string id) where T : IdentifiableObjectData
+        {
+            return TridionCoreServiceFactory.Get<T>(id);
         }
     }
 }

@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9616332D-8CE8-4372-A49E-7B799F65E067}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{DB7BA007-E5B9-4367-BE1C-3B93B2B689CF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>chrismrgn.sdl.tridion.core</RootNamespace>
-    <AssemblyName>chrismrgn.sdl.tridion.core</AssemblyName>
+    <RootNamespace>chrismrgn.sdl.tridion.samples.componenttemplaterecentlyaddedtopage</RootNamespace>
+    <AssemblyName>chrismrgn.sdl.tridion.samples.componenttemplaterecentlyaddedtopage</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,12 +37,7 @@
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,21 +50,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileCache\FileCache.cs" />
-    <Compile Include="ItemTypeResolver.cs" />
-    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="TcmUri.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\chrismrgn.sdl.tridion.coreservice\chrismrgn.sdl.tridion.coreservice.csproj">
-      <Project>{3A86434F-052E-44F6-8DB8-AE4177FB2EC3}</Project>
-      <Name>chrismrgn.sdl.tridion.coreservice</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+    <None Include="private-app-settings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\chrismgrn.sdl.tridion.coreservice.extensionmethods\chrismgrn.sdl.tridion.coreservice.extensionmethods.csproj">
+      <Project>{221e98c3-c839-4605-9583-329dfedd533e}</Project>
+      <Name>chrismgrn.sdl.tridion.coreservice.extensionmethods</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\chrismrgn.sdl.tridion.coreservice.helpers\chrismrgn.sdl.tridion.coreservice.helpers.csproj">
+      <Project>{57A0FBFB-3C38-4AAE-AF00-CB1D9CEF597D}</Project>
+      <Name>chrismrgn.sdl.tridion.coreservice.helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\chrismrgn.sdl.tridion.core\chrismrgn.sdl.tridion.core.csproj">
+      <Project>{9616332D-8CE8-4372-A49E-7B799F65E067}</Project>
+      <Name>chrismrgn.sdl.tridion.core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

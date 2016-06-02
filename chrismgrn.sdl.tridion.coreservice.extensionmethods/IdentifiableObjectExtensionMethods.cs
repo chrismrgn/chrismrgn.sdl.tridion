@@ -38,11 +38,11 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
 
             return TridionCoreServiceFactory.Publish(items, targets, publishInstruction, priority, readOptions);
         }
-        public static int GetAllUsageCount<T>(this IdentifiableObjectData item) where T : IdentifiableObjectData
+        public static int GetAllUsageCount<T>(this IdentifiableObjectData item, UsingItemsFilterData filter = null) where T : IdentifiableObjectData
         {
             return item.GetAllUsages<T>().Count;
         }
-        public static IList<T> GetAllUsages<T>(this IdentifiableObjectData item) where T : IdentifiableObjectData
+        public static IList<T> GetAllUsages<T>(this IdentifiableObjectData item, UsingItemsFilterData filter = null) where T : IdentifiableObjectData
         {
             Logger.For(typeof(IdentifiableObjectExtensionMethods)).DebugFormat("Loading usages of {0} for {1}", typeof(T).Name, item.Title);
 
@@ -52,14 +52,16 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
 
             if (items == null)
             {
-                var filter = new UsingItemsFilterData
+                if (filter == null)
                 {
-                    ItemTypes = new[] { ItemTypeResolver.GetItemType(typeof(T)) },
-                    IncludedVersions = VersionCondition.OnlyLatestAndCheckedOutVersions,
-                    IncludeLocalCopies = false,
-                    BaseColumns = ListBaseColumns.Extended
-                };
-
+                    filter = new UsingItemsFilterData
+                    {
+                        ItemTypes = new[] { ItemTypeResolver.GetItemType(typeof(T)) },
+                        IncludedVersions = VersionCondition.OnlyLatestAndCheckedOutVersions,
+                        IncludeLocalCopies = false,
+                        BaseColumns = ListBaseColumns.Extended
+                    };
+                }
                 items = TridionCoreServiceFactory.GetList<T>(item.Id, filter);
                 Logger.For(typeof(IdentifiableObjectExtensionMethods)).DebugFormat("Found {0} {1} for {2}", items.Count, typeof(T).Name, item.Title);
                 FileCache.SaveToFile(filename, items, subFolder);

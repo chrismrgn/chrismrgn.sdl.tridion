@@ -9,5 +9,10 @@ namespace chrismrgn.sdl.tridion.coreservice.Helpers
         {
             return ItemHelpers.LoadAllByPublication<ComponentTemplateData>(publications);
         }
+
+        public static ComponentTemplateData LoadComponentTemplate(string id)
+        {
+            return ItemHelpers.LoadItem<ComponentTemplateData>(id);
+        }
     }
 }

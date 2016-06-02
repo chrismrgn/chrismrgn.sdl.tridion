@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using Tridion.Content
-    Manager.CoreService.Client;
+using Tridion.ContentManager.CoreService.Client;
 
 namespace chrismrgn.sdl.tridion.coreservice.helpers.Helpers
 {

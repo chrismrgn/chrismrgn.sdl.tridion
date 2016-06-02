@@ -14,6 +14,12 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
             return TridionCoreServiceFactory.CheckOut<T>(item.Id, removeLock, readOptions);
         }
 
+        public static FullVersionInfo FullVersionInfo<T>(this T item) where T : VersionedItemData
+        {
+            return (FullVersionInfo)item.VersionInfo;
+        }
+
+
         //public static void LocalizeItem<T>(this T item, ISessionAwareCoreService client, ReadOptions readOptions = null) where T : VersionedItemData
         //{
         //    if (readOptions == null)
@@ -54,4 +60,4 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
         //    return client.GetList(item.Id, usingItemsFilter).Cast<TReturn>();
         //}
     }
-    }
+}
