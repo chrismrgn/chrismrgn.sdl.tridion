@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tridion.ContentManager.CoreService.Client;
+﻿using System.Collections.Generic;
+using Tridion.Content
+    Manager.CoreService.Client;
 
 namespace chrismrgn.sdl.tridion.coreservice.helpers.Helpers
 {

@@ -3,7 +3,6 @@ using chrismrgn.sdl.tridion.coreservice;
 using Tridion.ContentManager.CoreService.Client;
 using chrismrgn.sdl.tridion.core;
 using System.Linq;
-using System;
 using chrismrgn.sdl.tridion.core.Logging;
 using chrismrgn.sdl.tridion.core.FileCache;
 

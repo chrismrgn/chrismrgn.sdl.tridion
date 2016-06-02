@@ -6,7 +6,6 @@ using System.Net;
 using System.Xml.Linq;
 using chrismrgn.sdl.tridion.coreservice.Extensions;
 using Tridion.ContentManager.CoreService.Client;
-using chrismrgn.sdl.tridion.coreservice;
 
 namespace chrismrgn.sdl.tridion.coreservice
 {

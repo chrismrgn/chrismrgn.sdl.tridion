@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Net.NetworkInformation;
-using chrismgrn.sdl.tridion.coreservice.extensionmethods;
+﻿using chrismgrn.sdl.tridion.coreservice.extensionmethods;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tridion.ContentManager.CoreService.Client;
 

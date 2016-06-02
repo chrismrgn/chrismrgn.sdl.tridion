@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Net.NetworkInformation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace chrismrgn.sdl.tridion.coreservice.tests
 {

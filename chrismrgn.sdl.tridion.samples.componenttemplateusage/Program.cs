@@ -4,7 +4,6 @@ using chrismrgn.sdl.tridion.core.Logging;
 using chrismrgn.sdl.tridion.coreservice.Helpers;
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Tridion.ContentManager.CoreService.Client;
 
