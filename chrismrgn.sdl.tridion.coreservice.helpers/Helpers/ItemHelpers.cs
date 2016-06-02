@@ -22,7 +22,7 @@ namespace chrismrgn.sdl.tridion.coreservice.Helpers
             Parallel.ForEach(publications,
                         new ParallelOptions
                         {
-                            MaxDegreeOfParallelism = Settings.MaxThreads()
+                            MaxDegreeOfParallelism = Settings.MaxThreads
                         },
                         publication =>
                         {

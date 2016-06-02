@@ -48,6 +48,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\PageTemplateHelpers.cs" />
+    <Compile Include="Helpers\ComponentTemplateHelpers.cs" />
     <Compile Include="Helpers\SchemaHelpers.cs" />
     <Compile Include="Helpers\ItemHelpers.cs" />
     <Compile Include="Helpers\PublicationHelpers.cs" />

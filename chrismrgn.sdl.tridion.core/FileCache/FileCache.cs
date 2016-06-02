@@ -7,17 +7,17 @@ namespace chrismrgn.sdl.tridion.core.FileCache
 {
     public static class FileCache
     {
-        private static string GetDataFolderPath(string filename)
+        private static string GetDataFolderPath(string subFolder)
         {
-            var path = Environment.CurrentDirectory + Path.Combine("\\data\\",  filename);
-            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            var path = Environment.CurrentDirectory + "\\data\\" + subFolder;
+            Directory.CreateDirectory(path);
             return path;
         }
 
-        public static T LoadFromFile<T>(string filename) 
+        public static T LoadFromFile<T>(string filename, string subFolder = "") 
         {
             T items = default(T);
-            var path = GetDataFolderPath(filename);
+            var path = GetDataFolderPath(subFolder) + "\\" + SanitizeFileName(filename);
 
             if (Settings.CacheData && File.Exists(path))
             {
@@ -27,12 +27,22 @@ namespace chrismrgn.sdl.tridion.core.FileCache
             return items;
         }
 
-        public static void SaveToFile(string filename, object @object)
+        public static void SaveToFile(string filename, object @object, string subFolder = "")
         {
-            var path = GetDataFolderPath(filename);
+            var path = GetDataFolderPath(subFolder) + "\\" + SanitizeFileName(filename);
             if (Settings.CacheData)
                 File.WriteAllText(path, JsonConvert.SerializeObject(@object));
         }
 
+
+        private static string SanitizeFileName(string fileName)
+        {
+            var sanitizedFileName = fileName;
+            foreach (char c in Path.GetInvalidFileNameChars())
+            {
+                sanitizedFileName = sanitizedFileName.Replace(c.ToString(), "");
+            }
+            return sanitizedFileName;
+        }
     }
 }

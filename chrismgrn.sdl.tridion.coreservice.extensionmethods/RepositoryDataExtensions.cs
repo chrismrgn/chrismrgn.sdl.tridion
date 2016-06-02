@@ -15,8 +15,9 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
         {
             Logger.For(typeof(RepositoryDataExtensions)).DebugFormat("Loading {0} for {1}", typeof(T).Name, item.Title);
 
-            string filename = string.Format("Instances/{0} - {1}.txt", typeof(T).Name, item.Title);
-            var items = FileCache.LoadFromFile<IList<T>>(filename);
+            string filename = string.Format("{0} - {1}.txt", typeof(T).Name, item.Title);
+            var subFolder = "Instances";
+            var items = FileCache.LoadFromFile<IList<T>>(filename, subFolder);
 
             if(items == null)
             { 
@@ -31,7 +32,7 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
                 //Remove Local Copies
                 items = items.Where(x=>x.BluePrintInfo.IsShared == false || x.BluePrintInfo.IsLocalized == true).ToList();
                 Logger.For(typeof(RepositoryDataExtensions)).DebugFormat("Found {0} {1} for {2}", items.Count, typeof(T).Name, item.Title);
-                FileCache.SaveToFile(filename, items);
+                FileCache.SaveToFile(filename, items, subFolder);
             }
             else
                 Logger.For(typeof(RepositoryDataExtensions)).DebugFormat("Loading {0} for {1} from cache", typeof(T).Name, item.Title);

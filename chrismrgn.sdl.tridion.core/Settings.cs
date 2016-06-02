@@ -9,12 +9,15 @@ namespace chrismrgn.sdl.tridion.core
 {
     public static class Settings
     {
-        public static int MaxThreads()
+        public static int MaxThreads
         {
-            int maxThreads;
-            if (!int.TryParse(ConfigurationManager.AppSettings["maxThreads"], out maxThreads))
-                maxThreads = 1;
-            return maxThreads;
+            get
+            {
+                int maxThreads;
+                if (!int.TryParse(ConfigurationManager.AppSettings["maxThreads"], out maxThreads))
+                    maxThreads = 1;
+                return maxThreads;
+            }
         }
 
         public static bool CacheData

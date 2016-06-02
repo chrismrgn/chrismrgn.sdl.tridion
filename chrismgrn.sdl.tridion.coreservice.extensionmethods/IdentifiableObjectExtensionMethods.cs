@@ -46,8 +46,9 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
         {
             Logger.For(typeof(IdentifiableObjectExtensionMethods)).DebugFormat("Loading usages of {0} for {1}", typeof(T).Name, item.Title);
 
-            string filename = string.Format("Usages/{0} - {1}.txt", typeof(T).Name, item.Title);
-            var items = FileCache.LoadFromFile<IList<T>>(filename);
+            string filename = string.Format("{0} - {1} - {2}.txt", item.GetType().Name, typeof(T).Name, item.Title);
+            var subFolder = "Usages";
+            var items = FileCache.LoadFromFile<IList<T>>(filename, subFolder);
 
             if (items == null)
             {
@@ -61,7 +62,7 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
 
                 items = TridionCoreServiceFactory.GetList<T>(item.Id, filter);
                 Logger.For(typeof(IdentifiableObjectExtensionMethods)).DebugFormat("Found {0} {1} for {2}", items.Count, typeof(T).Name, item.Title);
-                FileCache.SaveToFile(filename, items);
+                FileCache.SaveToFile(filename, items, subFolder);
             }
             else
                 Logger.For(typeof(RepositoryDataExtensions)).DebugFormat("Loading usages of {0} for {1} from cache", typeof(T).Name, item.Title);
