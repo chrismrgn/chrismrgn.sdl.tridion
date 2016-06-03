@@ -6,6 +6,7 @@ using Tridion.ContentManager.CoreService.Client;
 using chrismrgn.sdl.tridion.core;
 using chrismrgn.sdl.tridion.core.Logging;
 using chrismrgn.sdl.tridion.core.FileCache;
+using System.Linq.Expressions;
 
 namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
 {
@@ -38,13 +39,13 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
 
             return TridionCoreServiceFactory.Publish(items, targets, publishInstruction, priority, readOptions);
         }
-        public static int GetAllUsageCount<T>(this IdentifiableObjectData item, UsingItemsFilterData filter = null) where T : IdentifiableObjectData
+        public static int GetAllUsageCount<T>(this IdentifiableObjectData item, Expression<Func<T, bool>> filterPredicate = null, UsingItemsFilterData filter = null) where T : IdentifiableObjectData
         {
-            return item.GetAllUsages<T>().Count;
+            return item.GetAllUsages<T>(filterPredicate: filterPredicate).Count;
         }
-        public static IList<T> GetAllUsages<T>(this IdentifiableObjectData item, UsingItemsFilterData filter = null) where T : IdentifiableObjectData
+        public static IList<T> GetAllUsages<T>(this IdentifiableObjectData item, Expression<Func<T, bool>> filterPredicate = null, UsingItemsFilterData filter = null) where T : IdentifiableObjectData
         {
-            Logger.For(typeof(IdentifiableObjectExtensionMethods)).DebugFormat("Loading usages of {0} for {1}", typeof(T).Name, item.Title);
+            Logger.Debug("Loading usages of {0} for {1}", typeof(T).Name, item.Title);
 
             string filename = string.Format("{0} - {1} - {2}.txt", item.GetType().Name, typeof(T).Name, item.Title);
             var subFolder = "Usages";
@@ -63,11 +64,15 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
                     };
                 }
                 items = TridionCoreServiceFactory.GetList<T>(item.Id, filter);
-                Logger.For(typeof(IdentifiableObjectExtensionMethods)).DebugFormat("Found {0} {1} for {2}", items.Count, typeof(T).Name, item.Title);
+                Logger.Debug("Found {0} {1} for {2}", items.Count, typeof(T).Name, item.Title);
                 FileCache.SaveToFile(filename, items, subFolder);
             }
             else
-                Logger.For(typeof(RepositoryDataExtensions)).DebugFormat("Loading usages of {0} for {1} from cache", typeof(T).Name, item.Title);
+                Logger.Debug("Loading usages of {0} for {1} from cache", typeof(T).Name, item.Title);
+
+            if (filterPredicate != null)
+                items = items.AsQueryable().Where(filterPredicate).ToList();
+
             return items;
         }
     }

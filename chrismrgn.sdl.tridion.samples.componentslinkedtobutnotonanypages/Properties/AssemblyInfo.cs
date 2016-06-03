@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("chrismrgn.sdl.tridion.coreservice")]
+[assembly: AssemblyTitle("chrismrgn.sdl.tridion.samples.componentslinkedtobutnotonanypages")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("chrismrgn.sdl.tridion.coreservice")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("chrismrgn.sdl.tridion.samples.componentslinkedtobutnotonanypages")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3a86434f-052e-44f6-8db8-ae4177fb2ec3")]
+[assembly: Guid("60bee6c2-11f7-431d-9bb7-8f47f04996f6")]
 
 // Version information for an assembly consists of the following four values:
 //

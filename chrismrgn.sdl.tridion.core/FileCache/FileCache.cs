@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using chrismrgn.sdl.tridion.core.Logging;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 
@@ -8,7 +9,8 @@ namespace chrismrgn.sdl.tridion.core.FileCache
     {
         private static string GetDataFolderPath(string subFolder)
         {
-            var path = Environment.CurrentDirectory + "\\data\\" + subFolder;
+            var path = Settings.CacheFolder ?? Environment.CurrentDirectory;
+            path = path + "\\data\\" + subFolder;
             Directory.CreateDirectory(path);
             return path;
         }
@@ -28,9 +30,19 @@ namespace chrismrgn.sdl.tridion.core.FileCache
 
         public static void SaveToFile(string filename, object @object, string subFolder = "")
         {
-            var path = GetDataFolderPath(subFolder) + "\\" + SanitizeFileName(filename);
+            string path = "";
             if (Settings.CacheData)
-                File.WriteAllText(path, JsonConvert.SerializeObject(@object));
+            {
+                path = GetDataFolderPath(subFolder) + "\\" + SanitizeFileName(filename);
+                try
+                {
+                    File.WriteAllText(path, JsonConvert.SerializeObject(@object));
+                }
+                catch(PathTooLongException e)
+                {
+                    Logger.Error("PathTooLongException for {0}", e, path);
+                }
+            }
         }
 
 

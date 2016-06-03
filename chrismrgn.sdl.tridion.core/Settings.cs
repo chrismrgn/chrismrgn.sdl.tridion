@@ -25,5 +25,13 @@ namespace chrismrgn.sdl.tridion.core
                 return cacheData;
             }
         }
+
+        public static string CacheFolder
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings.Get("CacheFolder");
+            }
+        }
     }
 }

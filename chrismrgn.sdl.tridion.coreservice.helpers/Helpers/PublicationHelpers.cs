@@ -9,7 +9,7 @@ namespace chrismrgn.sdl.tridion.coreservice.Helpers
     {
         public static IList<PublicationData> LoadAllPublications()
         {
-            Logger.For(typeof(PublicationHelpers)).DebugFormat("Loading PublicationData");
+            Logger.Debug("Loading PublicationData");
 
             string filename = "PublicationData.txt";
             var publications = FileCache.LoadFromFile<IList<PublicationData>>(filename);
@@ -25,9 +25,9 @@ namespace chrismrgn.sdl.tridion.coreservice.Helpers
                 FileCache.SaveToFile(filename, publications);
             }
             else
-                Logger.For(typeof(PublicationHelpers)).DebugFormat("Loading publications from cache");
+                Logger.Debug("Loading publications from cache");
 
-            Logger.For(typeof(PublicationHelpers)).DebugFormat("Found {0} PublicationData", publications.Count);
+            Logger.Debug("Found {0} PublicationData", publications.Count);
 
             return publications;
         }

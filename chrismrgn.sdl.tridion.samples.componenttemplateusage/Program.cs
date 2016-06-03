@@ -15,10 +15,10 @@ namespace chrismrgn.sdl.tridion.samples.ComponentTemplateUsage
         {
             var timer = new Stopwatch();
             timer.Start();
-            Logger.For(typeof(PublicationHelpers)).Debug("Starting...");
+            Logger.Debug("Starting...");
             ProcessComponentTemplatesAndUsage();
             timer.Stop();
-            Logger.For(typeof(PublicationHelpers)).DebugFormat("Finished in {0} seconds ...", timer.Elapsed.Seconds);
+            Logger.Debug("Finished in {0} seconds ...", timer.Elapsed.Seconds);
             Console.ReadKey();
         }
 
@@ -34,7 +34,7 @@ namespace chrismrgn.sdl.tridion.samples.ComponentTemplateUsage
                         componentTemplate =>
                         {
                             //CSV Format, to be opened in Excel
-                            Logger.For(typeof(Program)).InfoFormat("{0},{1},{2}", componentTemplate.Title, componentTemplate.BluePrintInfo.OwningRepository.Title, componentTemplate.GetAllUsageCount<PageData>());
+                            Logger.Info("{0},{1},{2}", componentTemplate.Title, componentTemplate.BluePrintInfo.OwningRepository.Title, componentTemplate.GetAllUsageCount<PageData>());
                         }
                     );
         }

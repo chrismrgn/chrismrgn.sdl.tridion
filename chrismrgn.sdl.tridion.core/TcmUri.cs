@@ -1,16 +1,9 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Tridion.ContentManager.TcmUri
-// Assembly: Tridion.Common, Version=7.1.0.52, Culture=neutral, PublicKeyToken=349a39f202fa9b53
-// MVID: B52A7802-8368-4BB0-9B15-67C30FD0EA31
-// Assembly location: C:\Workspace\Schneider\webmachine-helpers\betc-migration\lib\Tridion.Common.dll
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Schema;
-using System.Xml.Serialization;
 using Tridion.ContentManager.CoreService.Client;
 
 namespace chrismrgn.sdl.tridion.core

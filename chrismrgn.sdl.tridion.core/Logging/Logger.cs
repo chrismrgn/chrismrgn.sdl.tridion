@@ -1,21 +1,43 @@
 ﻿using log4net;
 using log4net.Config;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace chrismrgn.sdl.tridion.core.Logging
 {
-    public class Logger
+    public static class Logger
     {
         static Logger()
         {
             XmlConfigurator.Configure();
         }
 
-        public static ILog For(object LoggedObject)
+        public static void Info(string format, params object[] args)
+        {
+            For(null).InfoFormat(format, args);
+        }
+
+        public static void Debug(string format, params object[] args)
+        {
+            For(null).DebugFormat(format, args);
+        }
+
+        public static void Warn(string format, params object[] args)
+        {
+            For(null).WarnFormat(format, args);
+        }
+
+        public static void Error(string format, Exception exception = null, params object[] args)
+        {
+            For(null).ErrorFormat(format, args);
+            For(null).Error(format, exception);
+        }
+
+        public static void Fatal(string format, params object[] args)
+        {
+            For(null).FatalFormat(format, args);
+        }
+
+        private static ILog For(object LoggedObject)
         {
             if (LoggedObject != null)
                 return For(LoggedObject.GetType());
@@ -23,7 +45,7 @@ namespace chrismrgn.sdl.tridion.core.Logging
                 return For(null);
         }
 
-        public static ILog For(Type ObjectType)
+        private static ILog For(Type ObjectType)
         {
             if (ObjectType != null)
                 return LogManager.GetLogger(ObjectType.Name);

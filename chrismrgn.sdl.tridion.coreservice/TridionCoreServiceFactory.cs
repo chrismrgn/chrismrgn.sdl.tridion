@@ -73,6 +73,23 @@ namespace chrismrgn.sdl.tridion.coreservice
             });
             return obj as T;
         }
+        //public static T GetMany<T>(string id, ReadOptions readOptions = null) where T : IdentifiableObjectData
+        //{
+        //    object obj = null;
+        //    CreateCoreServiceClient().Using(client =>
+        //    {
+        //        try
+        //        {
+        //            if (readOptions == null) readOptions = new ReadOptions { LoadFlags = LoadFlags.Expanded };
+        //            obj = client.Read(id, readOptions);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            obj = null;
+        //        }
+        //    });
+        //    return obj as T;
+        //}
         public static SchemaFieldsData GetSchemaFields(string id, bool expandEmbeddedFields = true, ReadOptions readOptions = null)
         {
             SchemaFieldsData obj = null;

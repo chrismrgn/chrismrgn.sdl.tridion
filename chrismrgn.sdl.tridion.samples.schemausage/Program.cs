@@ -16,10 +16,10 @@ namespace chrismrgn.sdl.tridion.samples.SchemaUsageExport
         {
             var timer = new Stopwatch();
             timer.Start();
-            Logger.For(typeof(PublicationHelpers)).Debug("Starting...");
+            Logger.Debug("Starting...");
             ProcessSchemasAndUsage();
             timer.Stop();
-            Logger.For(typeof(PublicationHelpers)).DebugFormat("Finished in {0} seconds ...", timer.Elapsed.Seconds);
+            Logger.Debug("Finished in {0} seconds ...", timer.Elapsed.Seconds);
             Console.ReadKey();
         }
 
@@ -29,9 +29,9 @@ namespace chrismrgn.sdl.tridion.samples.SchemaUsageExport
 
             foreach (var schemaGroup in schemas.GroupBy(x=>x.Purpose))
             {
-                Logger.For(typeof(Program)).Debug("");
-                Logger.For(typeof(Program)).DebugFormat("{0} Schemas", schemaGroup.First().Purpose);
-                Logger.For(typeof(Program)).Debug("====================");
+                Logger.Debug("");
+                Logger.Debug("{0} Schemas", schemaGroup.First().Purpose);
+                Logger.Debug("====================");
 
                 Parallel.ForEach(schemaGroup,
                         new ParallelOptions
@@ -41,7 +41,7 @@ namespace chrismrgn.sdl.tridion.samples.SchemaUsageExport
                         schema =>
                         {
                             //CSV Format, to be opened in Excel
-                            Logger.For(typeof(Program)).InfoFormat("{0},{1},{2},{3}", schema.Purpose, schema.Title, schema.BluePrintInfo.OwningRepository.Title, schema.GetAllUsageCount<ComponentData>());
+                            Logger.Info("{0},{1},{2},{3}", schema.Purpose, schema.Title, schema.BluePrintInfo.OwningRepository.Title, schema.GetAllUsageCount<ComponentData>());
                         }
                     );
             }
