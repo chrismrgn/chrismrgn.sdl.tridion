@@ -18,23 +18,27 @@ namespace chrismgrn.sdl.tridion.coreservice.extensionmethods
             var subFolder = "Instances";
             var items = FileCache.LoadFromFile<IList<T>>(filename, subFolder);
 
-            if(items == null)
-            { 
+            if (items == null)
+            {
                 items = TridionCoreServiceFactory.GetList<T>(item.Id, new RepositoryItemsFilterData
                 {
                     BaseColumns = ListBaseColumns.Extended,
                     ItemTypes = new[] { ItemTypeResolver.GetItemType(typeof(T)) },
                     Recursive = true,
-                    SchemaPurposes = schemaPurposesToInclude
+                    SchemaPurposes = schemaPurposesToInclude,
+                    ShowNewItems = true
                 });
 
                 //Remove Local Copies
-                items = items.Where(x=>x.BluePrintInfo.IsShared == false || x.BluePrintInfo.IsLocalized == true).ToList();
+                items = items.Where(x => x.BluePrintInfo.IsShared == false || x.BluePrintInfo.IsLocalized == true).ToList();
                 Logger.Debug("Found {0} {1} for {2}", items.Count, typeof(T).Name, item.Title);
                 FileCache.SaveToFile(filename, items, subFolder);
             }
             else
-                Logger.Debug("Loading {0} for {1} from cache", typeof(T).Name, item.Title);
+            {
+                Logger.Debug("Loading {0} {1} for {2} from cache", items.Count(), typeof(T).Name, item.Title);
+                Logger.Debug("CACHE: {0},{1},{2}", items.Count(), typeof(T).Name, item.Title);
+            }
             return items;
         }
     }

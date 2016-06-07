@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{57A0FBFB-3C38-4AAE-AF00-CB1D9CEF597D}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{F1587D1B-41DA-41CB-94D3-ABEA8599A380}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>chrismrgn.sdl.tridion.coreservice.helpers</RootNamespace>
-    <AssemblyName>chrismrgn.sdl.tridion.coreservice.helpers</AssemblyName>
+    <RootNamespace>chrismrgn.sdl.tridion.samples.workflow</RootNamespace>
+    <AssemblyName>chrismrgn.sdl.tridion.samples.workflow</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,7 +34,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,29 +44,21 @@
     <Reference Include="Tridion.ContentManager.CoreService.Client">
       <HintPath>..\lib\Tridion.ContentManager.CoreService.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Tridion.ContentManager.CoreService.Workflow">
+      <HintPath>..\lib\Tridion.ContentManager.CoreService.Workflow.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\ComponentHelpers.cs" />
-    <Compile Include="Helpers\PageTemplateHelpers.cs" />
-    <Compile Include="Helpers\ComponentTemplateHelpers.cs" />
-    <Compile Include="Helpers\SchemaHelpers.cs" />
-    <Compile Include="Helpers\ItemHelpers.cs" />
-    <Compile Include="Helpers\PublicationHelpers.cs" />
-    <Compile Include="Helpers\UserHelpers.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\chrismgrn.sdl.tridion.coreservice.extensionmethods\chrismgrn.sdl.tridion.coreservice.extensionmethods.csproj">
       <Project>{221e98c3-c839-4605-9583-329dfedd533e}</Project>
       <Name>chrismgrn.sdl.tridion.coreservice.extensionmethods</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\chrismrgn.sdl.tridion.coreservice\chrismrgn.sdl.tridion.coreservice.csproj">
-      <Project>{3A86434F-052E-44F6-8DB8-AE4177FB2EC3}</Project>
-      <Name>chrismrgn.sdl.tridion.coreservice</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\chrismrgn.sdl.tridion.core\chrismrgn.sdl.tridion.core.csproj">
-      <Project>{9616332D-8CE8-4372-A49E-7B799F65E067}</Project>
-      <Name>chrismrgn.sdl.tridion.core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

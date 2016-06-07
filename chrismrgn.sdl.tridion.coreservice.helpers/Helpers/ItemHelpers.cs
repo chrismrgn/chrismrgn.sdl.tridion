@@ -1,5 +1,7 @@
 ﻿using chrismgrn.sdl.tridion.coreservice.extensionmethods;
 using chrismrgn.sdl.tridion.core;
+using chrismrgn.sdl.tridion.core.FileCache;
+using chrismrgn.sdl.tridion.core.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +38,21 @@ namespace chrismrgn.sdl.tridion.coreservice.Helpers
 
         public static T LoadItem<T>(string id) where T : IdentifiableObjectData
         {
-            return TridionCoreServiceFactory.Get<T>(id);
+            Logger.Debug("Loading {0} for {1}", typeof(T).Name, id);
+
+            string filename = string.Format("{0} - {1}.txt", typeof(T).Name, id);
+            var subFolder = "Instances";
+            var item = FileCache.LoadFromFile<T>(filename, subFolder);
+
+            if (item == null)
+            {
+                item = TridionCoreServiceFactory.Get<T>(id);
+
+                if(item!=null)
+                    FileCache.SaveToFile(filename, item, subFolder);
+            }
+
+            return item;
         }
     }
 }
